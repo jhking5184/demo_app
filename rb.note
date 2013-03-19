@@ -355,3 +355,122 @@ two ways to see application on heroku:
 1. http://salty-savannah-1414.herokuapp.com/ 
 2. $ heroku open
 
+# 20130318
+# RoR Tutorial
+# p.47
+
+$ rails generate scaffold User name:string email:string
+
+(got pg not found, resolved by:
+$ sudo aptitude install libpq-dev
+$ gem install pg
+Successfully installed pg-0.14.1
+1 gem installed
+Installing ri documentation for pg-0.14.1...
+Installing RDoc documentation for pg-0.14.1...
+)
+
+# rerun the same for User:
+$ rails generate scaffold User name:string email:string
+ECURITY WARNING: No secret option provided to Rack::Session::Cookie.
+        This poses a security threat. It is strongly recommended that you
+        provide a secret to prevent exploits that may be possible from crafted
+        cookies. This will not be supported in future versions of Rack, and
+        future versions will even invalidate your existing user cookies.
+
+        Called from: /home/jhk/.rvm/gems/ruby-1.9.3-p392@rails3tutorial2ndEd/gems/actionpack-3.2.3/lib/action_dispatch/middleware/session/abstract_store.rb:28:in `initialize'.
+
+      invoke  active_record
+      create    db/migrate/20130318225050_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/unit/user_test.rb
+      create      test/fixtures/users.yml
+       route  resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    test_unit
+      create      test/functional/users_controller_test.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke      test_unit
+      create        test/unit/helpers/users_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/users.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/users.css.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.css.scss
+
+# for demo application, migrate the User database using rake 
+$ bundle exec rake db:migrate
+
+# rake is make tools for ruby, see a list of db tasks, do:
+$ bundle exec rake -T db
+rake db:create          # Create the database from config/database.yml for ...
+rake db:drop            # Drops the database for the current Rails.env (use...
+rake db:fixtures:load   # Load fixtures into the current environment's data...
+rake db:migrate         # Migrate the database (options: VERSION=x, VERBOSE...
+rake db:migrate:status  # Display status of migrations
+rake db:rollback        # Rolls the schema back to the previous version (sp...
+rake db:schema:dump     # Create a db/schema.rb file that can be portably u...
+rake db:schema:load     # Load a schema.rb file into the database
+rake db:seed            # Load the seed data from db/seeds.rb
+rake db:setup           # Create the database, load the schema, and initial...
+rake db:structure:dump  # Dump the database structure to db/structure.sql. ...
+rake db:version         # Retrieves the current schema version number
+
+# see all rake tasks available, run:
+$ bundle exec rake -T
+rake about              # List versions of all Rails frameworks and the env...
+rake assets:clean       # Remove compiled assets
+rake assets:precompile  # Compile all the assets named in config.assets.pre...
+rake db:create          # Create the database from config/database.yml for ...
+rake db:drop            # Drops the database for the current Rails.env (use...
+rake db:fixtures:load   # Load fixtures into the current environment's data...
+rake db:migrate         # Migrate the database (options: VERSION=x, VERBOSE...
+rake db:migrate:status  # Display status of migrations
+rake db:rollback        # Rolls the schema back to the previous version (sp...
+rake db:schema:dump     # Create a db/schema.rb file that can be portably u...
+rake db:schema:load     # Load a schema.rb file into the database
+rake db:seed            # Load the seed data from db/seeds.rb
+rake db:setup           # Create the database, load the schema, and initial...
+rake db:structure:dump  # Dump the database structure to db/structure.sql. ...
+rake db:version         # Retrieves the current schema version number
+rake doc:app            # Generate docs for the app -- also available doc:r...
+rake log:clear          # Truncates all *.log files in log/ to zero bytes
+rake middleware         # Prints out your Rack middleware stack
+rake notes              # Enumerate all annotations (use notes:optimize, :f...
+rake notes:custom       # Enumerate a custom annotation, specify with ANNOT...
+rake rails:template     # Applies the template supplied by LOCATION=(/path/...
+rake rails:update       # Update configs and some other initially generated...
+rake routes             # Print out all defined routes in match order, with...
+rake secret             # Generate a cryptographically secure secret key (t...
+rake stats              # Report code statistics (KLOCs, etc) from the appl...
+rake test               # Runs test:units, test:functionals, test:integrati...
+rake test:recent        # Run tests for {:recent=>"test:prepare"} / Test re...
+rake test:single        # Run tests for {:single=>"test:prepare"}
+rake test:uncommitted   # Run tests for {:uncommitted=>"test:prepare"} / Te...
+rake time:zones:all     # Displays all time zones, also available: time:zon...
+rake tmp:clear          # Clear session, cache, and socket files from tmp/ ...
+rake tmp:create         # Creates tmp directories for sessions, cache, sock...
+
+
+# run generate scaffold for Microposts:
+$ rails generate scaffold Micropost content:string user_id:integer
+
+# for demo application, migrate the Microposts database using rake 
+$ bundle exec rake db:migrate
+
+# to validates micropost length, edit app/models/micropost.rb 
+# to associate between data models, edit app/models/user.rb and micropost.rb 
+
+
